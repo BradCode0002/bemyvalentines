@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Question for You ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="question">Will you be my valentine?</h1>
+
+        <div class="gif-container" id="gifContainer">
+            <!-- Initial state: Maybe a cute static emoji or nothing -->
+            <div class="emoji-display">🌹</div>
+        </div>
+
+        <div class="btn-container">
+            <button class="btn yes-btn" id="yesBtn">Yes</button>
+            <button class="btn no-btn" id="noBtn">No</button>
+            <div class="arrow-hint hidden" id="arrowHint">👈</div>
+        </div>
+    </div>
+
+    <div class="success-container hidden" id="successContainer">
+        <h1>YAY! ❤️</h1>
+        <div class="emoji-display">🐶💖</div>
+        <p>Best decision ever!</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
