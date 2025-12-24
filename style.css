@@ -14,7 +14,6 @@ body {
     height: 100vh;
     margin: 0;
     overflow: hidden;
-    /* Prevent scrolling when button moves */
 }
 
 .container {
@@ -24,7 +23,6 @@ body {
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(255, 107, 107, 0.2);
     backdrop-filter: blur(5px);
-    transition: transform 0.3s ease;
 }
 
 .question {
@@ -45,115 +43,65 @@ body {
     justify-content: center;
     gap: 2rem;
     position: relative;
-    /* Context for absolute positioning if needed inside, but we'll use fixed/absolute for NO button movement */
 }
 
 .btn {
-    padding: 1rem 3rem;
-    font-size: 1.5rem;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
     border: none;
     border-radius: 50px;
     cursor: pointer;
     font-family: 'Fredoka One', cursive;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.yes-btn {
-    background-color: #2ecc71;
-    color: white;
-}
+.yes-btn { background-color: #2ecc71; color: white; }
+.yes-btn:hover { transform: scale(1.1); background-color: #27ae60; }
+.no-btn { background-color: var(--primary-color); color: white; position: relative; z-index: 10; }
 
-.yes-btn:hover {
-    transform: scale(1.1);
-    background-color: #27ae60;
-}
-
-.no-btn {
-    background-color: var(--primary-color);
-    color: white;
-    /* Important for movement */
-    position: relative;
-    transition: all 0.2s ease;
-    /* Faster transition for movement */
-}
-
-/* Success State */
-.success-container {
+/* Modal */
+.modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: white; padding: 2.5rem; border-radius: 20px;
+    text-align: center; position: relative; width: 90%; max-width: 400px;
+}
+
+.close-modal { position: absolute; top: 10px; right: 20px; font-size: 1.5rem; cursor: pointer; color: #999; }
+
+.modal-content input {
+    width: 100%; padding: 10px; margin: 1rem 0;
+    border: 2px solid var(--secondary-color); border-radius: 10px;
+    font-size: 1.2rem; text-align: center; outline: none; box-sizing: border-box;
+}
+
+.error-message {
+    background: #fff5f5; border: 1px solid #feb2b2; padding: 10px;
+    border-radius: 8px; color: #c53030; font-weight: bold; margin-bottom: 1rem;
+}
+
+.shake { animation: shake 0.4s ease-in-out; }
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.success-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background-color: rgba(255, 230, 230, 0.95);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 3000;
 }
 
-.hidden {
-    display: none !important;
-}
+.hidden { display: none !important; }
 
-/* Animations */
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-@keyframes puppyEyes {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.2) rotate(-5deg);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-.puppy-eyes-active .emoji-display {
-    animation: puppyEyes 0.5s infinite;
-}
-
-/* Arrow Hint */
-.arrow-hint {
-    font-size: 3rem;
-    position: absolute;
-    /* Position it to the right of the Yes button roughly */
-    left: 50%;
-    transform: translateX(60px);
-    /* Offset from center */
-    top: 50%;
-    margin-top: -1.5rem;
-    /* Center vertically relative to button height */
-    animation: pointLeft 1s ease-in-out infinite;
-    pointer-events: none;
-    /* Let clicks pass through just in case */
-}
-
-@keyframes pointLeft {
-
-    0%,
-    100% {
-        transform: translateX(60px);
-    }
-
-    50% {
-        transform: translateX(80px);
-    }
-}
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
